@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="main-menu">
+    <ul>
+      <li><a href="allrll/classes.html">Questions</a></li>
+    </ul>
+  </div>
+  <div class="user-menu">
+    <ul>
+      {% if user.is_authenticated %}
+      <li><a href="allrll/new-question.html">Ask question</a></li>
+      <li><a href="allrll/logout.html">Logout</a></li>
+      {% else %}
+      <li><a href="allrll/login.html">Login</a></li>
+      <li><a href="allrll/register.html">Register</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

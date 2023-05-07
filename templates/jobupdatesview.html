@@ -1,0 +1,38 @@
+{%extends 'base.html' %}
+
+{% block title %} JobUpdatesView {% endblock title %}
+{% block body %}
+
+<div class="container" style="padding-top: 50px; padding-bottom: 50px">
+    <div class="row mt-4">
+        <!-- post1 -->
+        <div class="col-md-8 blog-main">
+            <h1 class="font-italic" style="font-size:40px">
+                {{post.title}}
+
+            </h1>
+            <img src="{{post.thumbnail}}" class="bd-placeholder-img" width="300" height="250"
+                        aria-label="Placeholder: Thumbnail"/>
+            <div class="blog-post">
+                <h3 class="blog-post-title">Job Title: {{post.head0}}</h3>
+                <p class="blog-post-meta">{{post.pub_date}} by <a href="#">Satish</a></p>
+                <div class="fb-like" data-href="https://www.seadesk.in/jobupdatesview/{{post.post_id}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div><br>
+
+                <h4>Eligibility/ Details:- </h4>
+                <p>{{post.chead1}}</p>
+                <p>How to Apply: {{post.chead0}}</p>
+                <h4>APPLY Now:- </h4>
+                <p><a href="{{post.chead2}}">Click Here!</a></p>
+                <div class="fb-comments" data-href="https://www.seadesk.in/jobupdatesview/{{post.post_id}}" data-numposts="5"></div>
+
+
+            </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+    </div>
+</div>
+
+<footer>
+</footer>
+{% endblock body %}

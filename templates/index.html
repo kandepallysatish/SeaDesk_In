@@ -1,0 +1,86 @@
+{%extends 'base.html' %}
+
+{% block title %} Index {% endblock title %}
+{% block body %}
+
+<div class="container my-5" >
+
+
+<div class="row my-2" style="margin:20px;">
+
+        <b><p style="padding:20px"> NOTE: WE START WITH SOME BASIC WEBSITE SOME FEATURES (STILL IN WORKING PROCESS)</p></b>
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Code Help</strong>
+                    <img src="/media/learn-to-solve-code.png" class="bd-placeholder-img" width="100%" height="100%"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                    <p class="card-text mb-auto">everyone can answer</p>
+                    <div class="mb-1 text-muted">Solve Errors</div>
+                    <a href="{% url 'classes' %}" class="stretched-link">Solve & Learn mistakes</a>
+                </div>
+                <!-- <div class="col-auto d-none d-lg-block">
+
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">JobUpdates</strong>
+                    <img src="/media/jobupdate.jpg" class="bd-placeholder-img" width="100%" height="100%"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                    <p class="card-text mb-auto">For:- Freshers/Experienced</p>
+                    <div class="mb-1 text-muted">Latest Updates</div>
+                    <a href="{% url 'jobupdates' %}" class="stretched-link">Apply Now</a>
+                </div>
+                <!-- <div class="col-auto d-none d-lg-block">
+
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Animes Online</strong>
+                    <img src="/media/Animes.jpg" class="bd-placeholder-img" width="100%" height="100%"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                    <p class="card-text mb-auto">Languages:- T/H/E/J</p>
+                    <div class="mb-1 text-muted">Latest Animes</div>
+                    <a href="{% url 'animes' %}" class="stretched-link">Watch Now</a>
+                </div>
+                <!-- <div class="col-auto d-none d-lg-block">
+
+                </div> -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Buy Projects (AI/ML/DL/IP)/ Arts</strong>
+                    <img src="/media/learn-to-solve-code.png" class="bd-placeholder-img" width="100%" height="100%"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                    <p class="card-text mb-auto">Languages:- (Python, Java, Android)(..)</p>
+                    <div class="mb-1 text-muted">Websites & Design: (Django, Flask, Streamlit, Html, Css)/ (Black&White Arts)</div>
+                    <a href="https://satishkandepally.epizy.com/shop/" class="stretched-link">Next</a>
+                </div>
+                <!-- <div class="col-auto d-none d-lg-block">
+
+                </div> -->
+            </div>
+        </div>
+
+
+</div>
+</div>
+{% endblock body %}

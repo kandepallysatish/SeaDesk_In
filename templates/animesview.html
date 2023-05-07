@@ -1,0 +1,110 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} AnimesView {% endblock title %}
+
+<style>
+    @media (min-width: 1920px)
+
+    .MuiGrid-grid-xl-8 {
+        flex-grow: 0;
+        max-width: 66.666667%;
+        flex-basis: 66.666667%;
+    }
+    @media (min-width: 1280px)
+
+    .MuiGrid-grid-lg-8 {
+        flex-grow: 0;
+        max-width: 66.666667%;
+        flex-basis: 66.666667%;
+    }
+    @media (min-width: 960px)
+
+    .MuiGrid-grid-md-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+    @media (min-width: 600px)
+
+    .MuiGrid-grid-sm-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .MuiGrid-grid-xs-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .MuiGrid-item {
+        margin: 0;
+        box-sizing: border-box;
+    }
+    a, a:hover {
+        color: #fff;
+    }
+    a {
+    text-decoration: none;
+    }
+    .border-box, a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+        box-sizing: border-box;
+    }
+    a {
+        background-color: transparent;
+    }
+</style>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="../static/js/theme.js"></script>
+    <script src="../static/bootstrap/css/bootstrap.min.css"></script>
+    <script src="../static/fonts/ionicons.min.css"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+{% block body %}
+
+<div class="container" style="padding-top: 50px; margin:20px;" >
+    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-8 MuiGrid-grid-lg-7 MuiGrid-grid-xl-6">
+        <!-- post1 -->
+        <div class="col-md-8 blog-main">
+            <center> <h3 class="font-italic">{{mypost.name_episode}}</h3>
+            <p class="blog-post-meta" style="float: left;">language: {{mypost.language}} </p>
+            <p class="blog-post-meta" style="float: right;" >year: {{mypost.year}} </p>
+            <p class="blog-post-meta" >Upload_date: {{mypost.pub_date}} </p>
+            <p class="blog-post-meta">NOTE:- Reload Page until Restriced-Removed/ Video-Display</p>
+            <input type="button" value="Reload Page" onClick="window.location.reload(true)">
+            </center>
+            <div class="blog-post">
+            <div class = " px - 3 mb - 5 " >
+                <center>
+
+                 <iframe id="encoder_iframe" width="760" height="412" allowfullscreen="" allow="autoplay;" scrolling="no" src="{{mypost.video}}">
+                 </iframe>
+                <script>
+                    function reload() {
+                        document.getElementById('encoder_iframe').src += '';
+                    }
+                    btn.onclick = reload;
+                </script>
+                </center>
+            </div>
+                <!-- DOWNLOAD BUTTON
+                <a href="/media/{{post.video}}" download class="class my-4 mx-3">
+                    <button class="btn"><i class="fa fa-download"></i> Download</button>
+                </a> -->
+            </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+    </div>
+
+</div>
+
+<footer>
+</footer>
+{% endblock body %}

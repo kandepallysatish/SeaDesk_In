@@ -1,0 +1,39 @@
+{%extends 'base.html' %}
+
+{% block title %} Contact {% endblock title %}
+{% block body %}
+
+<body>
+    <main class="page contact-page">
+        <section class="portfolio-block contact">
+            <div class="container">
+    <center>
+    {% if messages %}
+            {% for message in messages %}
+        <div class="alert alert- {{ message.tags }} warning alert-dismissible fade show my-0" role="alert" style="background-color: lightgreen; ">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+            {% endfor %}
+    {% endif %}
+    </center>
+                <div class="heading">
+                    <h2>Contact me</h2>
+                </div>
+                <form method="post" action="/contact" class="contact__form">
+                    {% csrf_token %}
+                    <div class="form-group"><label for="name">Your Name</label>       <input class="form-control item" type="text" id="name" name="name" placeholder="Enter Name..." ></div>
+                    <div class="form-group"><label for="number">Contact Number</label><input class="form-control item" type="number" id="number" name="number" placeholder="Enter Phone Number..."></div>
+                    <div class="form-group"><label for="email">Email</label>          <input class="form-control item" type="email" id="email" name="email" placeholder="Enter Email..."></div>
+                    <div class="form-group"><label for="message">Message</label>      <textarea class="form-control item" type="text" name="desc" id="desc" placeholder="Enter Message here"></textarea></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block btn-lg" type="submit" value="send" >Submit Form</button></div>
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+{% endblock body %}

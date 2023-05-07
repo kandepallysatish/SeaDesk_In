@@ -1,0 +1,93 @@
+{%extends 'base.html' %}
+{% block title %} Animes {% endblock title %}
+
+<style>
+    @media (min-width: 1920px)
+
+    .MuiGrid-grid-xl-8 {
+        flex-grow: 0;
+        max-width: 66.666667%;
+        flex-basis: 66.666667%;
+    }
+    @media (min-width: 1280px)
+
+    .MuiGrid-grid-lg-8 {
+        flex-grow: 0;
+        max-width: 66.666667%;
+        flex-basis: 66.666667%;
+    }
+    @media (min-width: 960px)
+
+    .MuiGrid-grid-md-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+    @media (min-width: 600px)
+
+    .MuiGrid-grid-sm-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .MuiGrid-grid-xs-12 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .MuiGrid-item {
+        margin: 0;
+        box-sizing: border-box;
+    }
+    a, a:hover {
+        color: #fff;
+    }
+    a {
+    text-decoration: none;
+    }
+    .border-box, a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+        box-sizing: border-box;
+    }
+    a {
+        background-color: transparent;
+    }
+</style>
+{% block body %}
+
+<div class="container" style="margin:20px;">    <!-- to make space between head and body we use margin -->
+{% block content %} {% endblock content %}
+<div class="row my-6" >
+
+    {% for item in post %}
+
+        <div class="col" style="padding-top: 50px">
+            <div
+                class="row no-gutters border rounded overflow-hidden mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-2 d-flex flex-column position-static">
+                    <a class="mb-1 text-muted">Language: {{item.language}}</a>
+                    <img src="{{item.thumbnail}}" class="bd-placeholder-img" style="width:160px; height:180px;"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                    <strong><p class="card-text mb-auto">{{item.name_episode}}</p></strong>
+                    <div class="mb-1 text-muted">Upload Date: {{item.pub_date}}</div>
+                    <a href="animesview/{{item.post_id}}" class="stretched-link">Watch Now</a>
+                </div>
+
+
+                <!-- <div class="col-auto d-none d-lg-block">
+
+                </div> -->
+            </div>
+        </div>
+
+    {% if forloop.counter|divisibleby:8 %}
+    </div><div class="row my-6">
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+</div>
+{% endblock body %}

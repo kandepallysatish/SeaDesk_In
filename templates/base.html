@@ -1,0 +1,434 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/mine.css' %}?{% now 'U' %}"/>
+
+    <title> {% block title %} {% endblock title %} | SeaDesk-SatishKandepally</title>
+  </head>
+  <style>
+        body{
+            padding: 25px;
+            background-color: white;
+            color: black;
+            font-size: 15px;
+      }
+
+      .dark-mode{
+            background-color: black;
+            color: white;
+      }
+      .button1 {border-radius: 12px;}
+
+      .tumbler__wrapper
+      {
+            margin-left: auto;
+            width: 50px;
+            height: 30px;
+            background-color: black;
+            border: #1d92b2;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6px;
+            cursor: pointer;
+            display: flex;
+            position: relative;
+
+            svg
+                width: 15px;
+                height: 15px;
+      }
+      .tumbler
+      {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: transform .5s, background-color .5s;
+            will-change: transform;
+      }
+
+      .tumbler--night-mode
+      {
+        transform: translateX(calc(100% - 2px));
+      }
+
+      .post--night-mode
+      {
+        border-bottom: 1px dashed darken(white, 15%);
+      }
+      .body--night-mode
+      {
+        background-color: #222;
+        color: darken(white, 15%);
+      }
+      .sun-svg,
+      .moon-svg{
+        display: none;
+      }
+      .loveSvg svg
+      {
+        display: block;
+        height: 1rem;
+        max-width: 1rem;
+      }
+      .night-mode
+      {
+        background-color: #222;
+        color: darken(white, 15%);
+      }
+      .post
+      {
+        border-bottom: 1px dashed #222;
+        margin-bottom: 1rem;
+        transition: border-bottom .5s;
+      }
+      .container .d-flex {
+        float: right;
+      }
+.container .d-flex button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.container .d-flex button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .container .d-flex {
+    float: right;
+  }
+
+  </style>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark portfolio-navbar gradient " style="padding: 5px">
+  <div class="container  ">
+    <h3><a class="navbar-brand" style="color:Black; font-size: 20px; float:left;" href="{% url 'index' %}"><b>SeaDesk</b></a></h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mx-0" id="navbarSupportedContent" >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-1">
+        <li class="nav-item mx-1"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
+        <li class="nav-item mx-1"><a class="nav-link" href="{% url 'classes' %}">CodeHelp</a></li>
+        <li class="nav-item mx-0"><a class="nav-link" href="{% url 'animes' %}">Animes </a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="{% url 'jobupdates' %}">JobUpdates </a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="{% url 'contact' %}">ContactUs </a></li>
+
+
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="/#"></a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <form method= POST action="{% url 'searchanimes' %}">
+        {% csrf_token %}
+        <input type="search" placeholder="Search Animes.." name="searched">
+        <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search" style="float:left;"></i></button>
+        </form>
+      </div>
+      <aside class="col-md-4 blog-sidebar">
+        <!-- dark mode -->
+        <div class="tumbler__wrapper">
+        <div class="tumbler"></div>
+      <!--?xml version="1.0" encoding="iso-8859-1"?-->
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+        <g>
+	        <path style="fill:#F0C419;" d="M30,0c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1V1C31,0.448,30.552,0,30,0z"></path>
+	        <path style="fill:#F0C419;" d="M30,52c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1v-6C31,52.448,30.552,52,30,52z"></path>
+	        <path style="fill:#F0C419;" d="M59,29h-6c-0.552,0-1,0.448-1,1s0.448,1,1,1h6c0.552,0,1-0.448,1-1S59.552,29,59,29z"></path>
+	        <path style="fill:#F0C419;" d="M8,30c0-0.552-0.448-1-1-1H1c-0.552,0-1,0.448-1,1s0.448,1,1,1h6C7.552,31,8,30.552,8,30z"></path>
+	        <path style="fill:#F0C419;" d="M46.264,14.736c0.256,0,0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414
+		        s-1.023-0.391-1.414,0l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C45.752,14.639,46.008,14.736,46.264,14.736z"></path>
+	        <path style="fill:#F0C419;" d="M13.029,45.557l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C7.488,52.902,7.744,53,8,53
+		        s0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414S13.42,45.166,13.029,45.557z"></path>
+	        <path style="fill:#F0C419;" d="M46.971,45.557c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+		        C51.488,52.902,51.744,53,52,53s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L46.971,45.557z"></path>
+	        <path style="fill:#F0C419;" d="M8.707,7.293c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+		        c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L8.707,7.293z"></path>
+	        <path style="fill:#F0C419;" d="M50.251,21.404c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+		        c0.508-0.216,0.746-0.803,0.53-1.311s-0.804-0.746-1.311-0.53l-2.762,1.172C50.272,20.309,50.035,20.896,50.251,21.404z"></path>
+	        <path style="fill:#F0C419;" d="M9.749,38.596c-0.216-0.508-0.803-0.746-1.311-0.53l-2.762,1.172
+		        c-0.508,0.216-0.746,0.803-0.53,1.311c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+		        C9.728,39.691,9.965,39.104,9.749,38.596z"></path>
+	        <path style="fill:#F0C419;" d="M54.481,38.813L51.7,37.688c-0.511-0.207-1.095,0.041-1.302,0.553
+		        c-0.207,0.512,0.041,1.095,0.553,1.302l2.782,1.124c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+		        C55.241,39.603,54.994,39.02,54.481,38.813z"></path>
+	        <path style="fill:#F0C419;" d="M5.519,21.188L8.3,22.312c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+		        c0.207-0.512-0.041-1.095-0.553-1.302l-2.782-1.124c-0.513-0.207-1.095,0.04-1.302,0.553C4.759,20.397,5.006,20.98,5.519,21.188z"></path>
+	        <path style="fill:#F0C419;" d="M39.907,50.781c-0.216-0.508-0.803-0.745-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311
+		        l1.172,2.762c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311L39.907,50.781z"></path>
+	        <path style="fill:#F0C419;" d="M21.014,9.829c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311l-1.172-2.762
+		        c-0.215-0.509-0.802-0.747-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311l1.172,2.762C20.254,9.6,20.625,9.829,21.014,9.829z"></path>
+	        <path style="fill:#F0C419;" d="M21.759,50.398c-0.511-0.205-1.095,0.04-1.302,0.553l-1.124,2.782
+		        c-0.207,0.512,0.041,1.095,0.553,1.302c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782
+		        C22.519,51.188,22.271,50.605,21.759,50.398z"></path>
+	        <path style="fill:#F0C419;" d="M38.615,9.675c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782c0.207-0.512-0.041-1.095-0.553-1.302
+		        c-0.511-0.207-1.095,0.041-1.302,0.553L37.688,8.3c-0.207,0.512,0.041,1.095,0.553,1.302C38.364,9.651,38.491,9.675,38.615,9.675z"></path>
+        </g>
+        <circle style="fill:#F0C419;" cx="30" cy="30" r="20"></circle>
+        <circle style="fill:#EDE21B;" cx="30" cy="30" r="15"></circle>
+        </svg>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.712 499.712" style="enable-background:new 0 0 499.712 499.712;" xml:space="preserve">
+        <path style="fill:#FFD93B;" d="M146.88,375.528c126.272,0,228.624-102.368,228.624-228.64c0-55.952-20.16-107.136-53.52-146.88
+	        C425.056,33.096,499.696,129.64,499.696,243.704c0,141.392-114.608,256-256,256c-114.064,0-210.608-74.64-243.696-177.712
+	        C39.744,355.368,90.944,375.528,146.88,375.528z"></path>
+        <path style="fill:#F4C534;" d="M401.92,42.776c34.24,43.504,54.816,98.272,54.816,157.952c0,141.392-114.608,256-256,256
+	        c-59.68,0-114.448-20.576-157.952-54.816c46.848,59.472,119.344,97.792,200.928,97.792c141.392,0,256-114.608,256-256
+	        C499.712,162.12,461.392,89.64,401.92,42.776z"></path>
+        <g>
+	        <polygon style="fill:#FFD83B;" points="128.128,99.944 154.496,153.4 213.472,161.96 170.8,203.56 180.864,262.296
+		        128.128,234.568 75.376,262.296 85.44,203.56 42.768,161.96 101.744,153.4 	"></polygon>
+	        <polygon style="fill:#FFD83B;" points="276.864,82.84 290.528,110.552 321.104,114.984 298.976,136.552 304.208,166.984
+		        276.864,152.616 249.52,166.984 254.752,136.552 232.624,114.984 263.2,110.552 	"></polygon>
+        </g></svg>
+        </div>
+
+        <div class="moon-svg">
+  <?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 499.712 499.712" style="enable-background:new 0 0 499.712 499.712;" xml:space="preserve">
+<path style="fill:#FFD93B;" d="M146.88,375.528c126.272,0,228.624-102.368,228.624-228.64c0-55.952-20.16-107.136-53.52-146.88
+	C425.056,33.096,499.696,129.64,499.696,243.704c0,141.392-114.608,256-256,256c-114.064,0-210.608-74.64-243.696-177.712
+	C39.744,355.368,90.944,375.528,146.88,375.528z"/>
+<path style="fill:#F4C534;" d="M401.92,42.776c34.24,43.504,54.816,98.272,54.816,157.952c0,141.392-114.608,256-256,256
+	c-59.68,0-114.448-20.576-157.952-54.816c46.848,59.472,119.344,97.792,200.928,97.792c141.392,0,256-114.608,256-256
+	C499.712,162.12,461.392,89.64,401.92,42.776z"/>
+<g>
+	<polygon style="fill:#FFD83B;" points="128.128,99.944 154.496,153.4 213.472,161.96 170.8,203.56 180.864,262.296
+		128.128,234.568 75.376,262.296 85.44,203.56 42.768,161.96 101.744,153.4 	"/>
+	<polygon style="fill:#FFD83B;" points="276.864,82.84 290.528,110.552 321.104,114.984 298.976,136.552 304.208,166.984
+		276.864,152.616 249.52,166.984 254.752,136.552 232.624,114.984 263.2,110.552 	"/>
+</g></svg>
+</div>
+
+<div class="sun-svg">
+   <?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+<g>
+	<path style="fill:#F0C419;" d="M30,0c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1V1C31,0.448,30.552,0,30,0z"/>
+	<path style="fill:#F0C419;" d="M30,52c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1v-6C31,52.448,30.552,52,30,52z"/>
+	<path style="fill:#F0C419;" d="M59,29h-6c-0.552,0-1,0.448-1,1s0.448,1,1,1h6c0.552,0,1-0.448,1-1S59.552,29,59,29z"/>
+	<path style="fill:#F0C419;" d="M8,30c0-0.552-0.448-1-1-1H1c-0.552,0-1,0.448-1,1s0.448,1,1,1h6C7.552,31,8,30.552,8,30z"/>
+	<path style="fill:#F0C419;" d="M46.264,14.736c0.256,0,0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414
+		s-1.023-0.391-1.414,0l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C45.752,14.639,46.008,14.736,46.264,14.736z"/>
+	<path style="fill:#F0C419;" d="M13.029,45.557l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C7.488,52.902,7.744,53,8,53
+		s0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414S13.42,45.166,13.029,45.557z"/>
+	<path style="fill:#F0C419;" d="M46.971,45.557c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+		C51.488,52.902,51.744,53,52,53s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L46.971,45.557z"/>
+	<path style="fill:#F0C419;" d="M8.707,7.293c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+		c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L8.707,7.293z"/>
+	<path style="fill:#F0C419;" d="M50.251,21.404c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+		c0.508-0.216,0.746-0.803,0.53-1.311s-0.804-0.746-1.311-0.53l-2.762,1.172C50.272,20.309,50.035,20.896,50.251,21.404z"/>
+	<path style="fill:#F0C419;" d="M9.749,38.596c-0.216-0.508-0.803-0.746-1.311-0.53l-2.762,1.172
+		c-0.508,0.216-0.746,0.803-0.53,1.311c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+		C9.728,39.691,9.965,39.104,9.749,38.596z"/>
+	<path style="fill:#F0C419;" d="M54.481,38.813L51.7,37.688c-0.511-0.207-1.095,0.041-1.302,0.553
+		c-0.207,0.512,0.041,1.095,0.553,1.302l2.782,1.124c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+		C55.241,39.603,54.994,39.02,54.481,38.813z"/>
+	<path style="fill:#F0C419;" d="M5.519,21.188L8.3,22.312c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+		c0.207-0.512-0.041-1.095-0.553-1.302l-2.782-1.124c-0.513-0.207-1.095,0.04-1.302,0.553C4.759,20.397,5.006,20.98,5.519,21.188z"
+		/>
+	<path style="fill:#F0C419;" d="M39.907,50.781c-0.216-0.508-0.803-0.745-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311
+		l1.172,2.762c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311L39.907,50.781z"
+		/>
+	<path style="fill:#F0C419;" d="M21.014,9.829c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311l-1.172-2.762
+		c-0.215-0.509-0.802-0.747-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311l1.172,2.762C20.254,9.6,20.625,9.829,21.014,9.829z"/>
+	<path style="fill:#F0C419;" d="M21.759,50.398c-0.511-0.205-1.095,0.04-1.302,0.553l-1.124,2.782
+		c-0.207,0.512,0.041,1.095,0.553,1.302c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782
+		C22.519,51.188,22.271,50.605,21.759,50.398z"/>
+	<path style="fill:#F0C419;" d="M38.615,9.675c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782c0.207-0.512-0.041-1.095-0.553-1.302
+		c-0.511-0.207-1.095,0.041-1.302,0.553L37.688,8.3c-0.207,0.512,0.041,1.095,0.553,1.302C38.364,9.651,38.491,9.675,38.615,9.675z"
+		/>
+</g>
+<circle style="fill:#F0C419;" cx="30" cy="30" r="20"/>
+<circle style="fill:#EDE21B;" cx="30" cy="30" r="15"/>
+</svg>
+
+
+
+        </div>
+        <script>
+            const switchTumblerHandler = () => {
+                const wrapper = document.querySelector('.tumbler__wrapper')
+
+                wrapper.addEventListener('click', () => {
+                    toggleNightMode()
+                })
+            }
+
+            const toggleNightMode = () => {
+                document.body.classList.toggle('body--night-mode')
+                document.querySelector('.tumbler').classList.toggle('tumbler--night-mode')
+                document.querySelectorAll('.post').forEach(post => {
+                    post.classList.toggle('post--night-mode')
+                })
+            }
+
+            switchTumblerHandler()
+
+
+
+        </script>
+
+       <!-- dark mode  -->
+      </aside><!-- /.blog-sidebar -->
+    </div>
+  </div>
+</nav>
+
+{% block body %} {% endblock body %}
+
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="../static/js/theme.js"></script>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!-- -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+  <main>
+
+  </main>
+  <!-- JAVA SCRIPT: USED FOR SHOP TO ADD ITEMS IN CART  -->
+  {% block js %} {% endblock%}
+
+<div class="col-auto d-none d-lg-block" >
+        <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-2" >
+
+            <div class="p-4 mb-3  rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">Latest SeaDesk.in <em>started out as a small project and is now</em> the fastest growing SeaDesk.in Updates of all times in India.</p>
+
+            </div>
+
+
+        </div><!-- /.blog-sidebar -->
+</div>
+
+<footer class="footer">
+<div class="container">
+    <div class="footer-content">
+        <div class="footer-icon">
+        </div>
+        <div class="footer-nav">
+            <div class="footer-nav-col">
+                <div class="footer-links-title"><a href="#">Share</a></div>
+                <ul class="footer-links">
+                    <li class="footer-link-item"><a href="https://api.whatsapp.com/send?text=https://www.seadesk.in/" data-action="share/whatsapp/share" >WhatsApp</a></li>
+                    <li class="footer-link-item"><a href="https://telegram.me/share/url?url=https://www.seadesk.in/" data-action="share/telegram/share" >Telegram</a></li>
+                    <li class="footer-link-item"><a data-href="https://www.seadesk.in/" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fblog%2Fblogpost%2F4&amp;src=sdkpreparse" data-action="share/facebook/share" >FaceBook</a></li>
+
+                </ul>
+            </div>
+            <div class="footer-nav-col">
+                <div class="footer-links-title"><a href="#">JobUpdates</a></div>
+                <ul class="footer-links">
+                    <li class="footer-link-item"><a href="https://t.me/All_Job_Update" data-action="share/telegram/share" >TelegramChannel</a></li>
+                    <li class="footer-link-item"><a href="https://t.me/Exams_Patterns_Notes_Helps" data-action="share/telegram/share" > TelegramGroup</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav-col">
+                <div class="footer-links-title"><a href="#">Follow</a></div>
+                <ul class="footer-links">
+                    <li class="footer-link-item"><a href="https://t.me/SeaDesk" data-action="share/telegram/share" >Telegram</a></li>
+                    <li class="footer-link-item"><a href="https://www.instagram.com/seadesk.in" data-action="share/instagram/share" >Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav-col">
+                <div class="footer-links-title"><a href="#">Arts</a></div>
+                <ul class="footer-links">
+                    <li class="footer-link-item"><a href="https://www.youtube.com/channel/UCInINLqoWAzRvgiqZX-i7nQ?sub_confirmation=1" data-action="share/youtube/share" >Youtube</a></li>
+                    <li class="footer-link-item"><a href="https://twitter.com/Satish_Lee_?s=09" data-action="share/twitter/share" >Twitter</a></li>
+                    <li class="footer-link-item"><a href="https://www.facebook.com/satish_lee_arts_and_talents-105913407828183" data-action="share/facebook/share" >Facebook</a></li>
+                    <li class="footer-link-item"><a href="https://t.me/Satish_Lee_Arts" data-action="share/telegram/share" >Telegram</a></li>
+                    <li class="footer-link-item"><a href="https://www.instagram.com/satish_lee_arts_and_talents/" data-action="share/instagram/share" >Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav-col">
+                <div class="footer-links-title"><a href="#">Follow Gaming</a></div>
+                <ul class="footer-links">
+                    <li class="footer-link-item">
+                        <a href="https://youtube.com/channel/UCar0kuqQ9wpWI_Q45FMOtog?sub_confirmation=1" data-action="share/youtube/share" >Youtube</a>
+                        <div class="footer-arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </li>
+                    <li class="footer-link-item">
+                        <a href="https://www.instagram.com/mr._god_soul_gaming/" data-action="share/instagram/share" >Instagram</a>
+                        <div class="footer-arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div></li>
+                    <li class="footer-link-item">
+                        <a href="https://t.me/Mr_God_SouL" data-action="share/telegram/share" >Telegram</a>
+                        <div class="footer-arrow-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-another-links">
+            <div class="social-media">
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UC6rdq61vbwCOgyvwjaU-0AA?sub_confirmation=1">Youtube</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/kandepallysatish">Github</a>
+                    </li>
+                    <li>
+                        <a href="https://satishkandepally.epizy.com/">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/satish-kandepally-ab5a2b203">LinkedIn</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&#169; 2023 copyright all right reserved</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</footer>
+
+  </body>
+
+
+</html>

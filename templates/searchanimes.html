@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} SearchAnimes {% endblock title %}
+
+{% block body %}
+<div class="container" style="padding-top: 50px">
+<center>
+    {% if searched %}
+        <hi>You Searched For {{searched}}</hi>
+        <br/>
+        {% for animes in sanimes %}
+            {{animes}} - <iframe id="encoder_iframe" width="760" height="412" allowfullscreen="" allow="autoplay;" scrolling="no" src="{{animes.video}}">
+                 </iframe><br/>
+        {% endfor %}
+    {% else %}
+        <h1>You! Forgot To Search</h1>
+    {% endif %}
+
+</center>
+</div>
+{% endblock body %}
