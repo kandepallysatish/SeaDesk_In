@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-jk2a-v78eaileonv^wfw+2j*^bc8swj6w+*mzzy98ajfq6=#k6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["139.59.8.91", "www.seadesk.in", "https://www.seadesk.in", "seadesk.in", "https://seadesk.in"]
+ALLOWED_HOSTS = ["64.227.140.92", "www.seadesk.in", "https://www.seadesk.in", "seadesk.in", "https://seadesk.in"]
 
 
 # Application definition
